@@ -1,0 +1,9 @@
+# Ignore all
+*
+# Unignore all with extensions (binaries)
+!*.*
+# Unignore all dirs
+!*/
+reference/
+*.o
+a.out
