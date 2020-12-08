@@ -3,9 +3,9 @@
 int main() {
     //char buffer[10] = {0};
     double a = time(NULL) / 2.0;
-    // float b = time(NULL) / 2.0;
+    double b = time(NULL) / 3.0;
 
-    printf("Pi: %f\n", a);
+    printf("Pi: %f\n%f", a, b);
 
     return 0;
 }

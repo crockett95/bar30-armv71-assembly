@@ -79,7 +79,26 @@ calculate_bar30:
     asr     r1, r1, #13  // should be zero
 
     mov     r0, r2
-    mov     r1, r8
+
+    vmov            s15, r2 // p
+    vcvt.f64.s32    d4, s15
+    mov             r2, #10
+    vmov            s15, r2
+    vcvt.f64.s32    d5, s15
+
+    vdiv.f64        d7, d4, d5
+
+    vmov    r0, r1, d7
+
+    vmov            s15, r8 // temp
+    vcvt.f64.s32    d4, s15
+    mov             r2, #100
+    vmov            s15, r2
+    vcvt.f64.s32    d5, s15
+
+    vdiv.f64        d7, d4, d5
+
+    vmov    r2, r3, d7
 
     pop     {r4, r5, r6, r7, r8, r9, r10, r11, r12, pc}
 

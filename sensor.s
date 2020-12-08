@@ -33,7 +33,7 @@ device:
 sensor: 
     .asciz "D1: %d \tD2: %d\n"
 output: 
-    .asciz "Pressure: %d (mbar*10)\tTemperature: %d (C*100)\n"
+    .asciz "Pressure: %2$.1f mbar\tTemperature: %1$.2f C\n"
 
 @ The program
     .text
@@ -64,6 +64,8 @@ main:
     bl      time
     mov     r6, r0 // int start = time(NULL)
 
+    sub     sp, sp, #8 // make room to store double
+
 _main_loop:
     mov     r0, #500 // small interval
     bl      delay
@@ -89,8 +91,7 @@ _main_loop:
     mov     r2, r4
     bl      calculate_bar30
 
-    mov     r2, r1
-    mov     r1, r0
+    strd    r0, r1, [sp]
     ldr     r0, outputAddr
     bl      printf
 
@@ -104,7 +105,7 @@ _main_loop:
     mov     r0, r5
     bl      close_bar30
     
-    add     sp, #16
+    add     sp, #24
 
     mov     r0, 0           @ return 0;
     pop     {r4, r5, r6, r7, r8, r9, fp, lr}
