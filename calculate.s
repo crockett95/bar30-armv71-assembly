@@ -6,6 +6,7 @@
     .global calculate_bar30
     .text
 
+@ r0 = d1, r1 = d2, r2 = c*, returns r0,r1 = double pressure r2,r3 = double temp
 calculate_bar30:
     push    {r4, r5, r6, r7, r8, r9, r10, r11, r12, lr}
     mov     r4, r0  // save d1
