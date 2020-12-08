@@ -17,6 +17,9 @@
     .equ    BAR_30_OSR_2048, 3
     .equ    BAR_30_OSR_4096, 4
 
+    .equ    RUNTIME_SEC, 30
+    .equ    INTERVAL_MS, 500
+
 @ Constant program data
     .section .rodata
     .align  2
@@ -56,7 +59,7 @@ main:
     sub     sp, sp, #8 // make room to store double
 
 _main_loop:
-    mov     r0, #500 // small interval
+    mov     r0, INTERVAL_MS
     bl      delay
     
     mov     r0, r5
@@ -88,7 +91,7 @@ _main_loop:
     bl      time
 
     sub     r0, r0, r6
-    cmp     r0, #30
+    cmp     r0, RUNTIME_SEC
     blt     _main_loop
 
     mov     r0, r5
