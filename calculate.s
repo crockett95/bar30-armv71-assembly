@@ -81,22 +81,30 @@ calculate_bar30:
 
     mov     r0, r2
 
+    // d4 = (double)p
     vmov            s15, r2 // p
     vcvt.f64.s32    d4, s15
+
+    // double d5 = 10
     mov             r2, #10
     vmov            s15, r2
     vcvt.f64.s32    d5, s15
 
+    // pressure = p / 10
     vdiv.f64        d7, d4, d5
 
     vmov    r0, r1, d7
 
+    // d4 = (double) temp
     vmov            s15, r8 // temp
     vcvt.f64.s32    d4, s15
+
+    // double d5 = 100
     mov             r2, #100
     vmov            s15, r2
     vcvt.f64.s32    d5, s15
 
+    // temp_c = temp / 100
     vdiv.f64        d7, d4, d5
 
     vmov    r2, r3, d7

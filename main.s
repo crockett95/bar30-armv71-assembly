@@ -17,7 +17,7 @@
     .equ    BAR_30_OSR_2048, 3
     .equ    BAR_30_OSR_4096, 4
 
-    .equ    RUNTIME_SEC, 30
+    .equ    RUNTIME_SEC, 120
     .equ    INTERVAL_MS, 500
 
 @ Constant program data
